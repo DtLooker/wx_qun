@@ -10,3 +10,23 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+
+
+if (!function_exists('getIps')) {
+
+
+    function getIps()
+    {
+        $remote_ip = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : '';
+        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+
+        if ($remote_ip) {
+            $ips['ip'] = $remote_ip;
+            $ips['ip2'] = $ip;
+        } else {
+            $ips['ip'] = $ip;
+            $ips['ip2'] = null;
+        }
+        return $ips;
+    }
+}
